@@ -1,0 +1,64 @@
+<ion-header  [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Customer History
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color ="light" [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Customer History</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <ion-card-title>
+      <H1>Customer History</H1>
+    </ion-card-title>
+    <ion-item>
+      <ion-label>User ID: </ion-label>
+      <ion-input [(ngModel)]="useridIn"></ion-input>
+    </ion-item>
+    <ion-button expand='full' color="secondary" (click)="getAnswer()">Search</ion-button>
+  </ion-card>
+  <div *ngIf="data$ | async as dd">
+    <ion-card *ngFor='let t of dd.data'>
+      <ion-card-content>
+        <p><b>User ID:</b> {{t.user_id}}</p>
+        <p><b>Event time:</b> {{t.event_time}} </p>
+        <p><b>Event type:</b> {{t.event_type}}</p>
+        <p><b>Product ID:</b> {{t.product_id}}</p>
+        <p><b>Price:</b> {{t.price}}</p>
+      </ion-card-content>      
+    </ion-card>
+  </div>
+<div>
+  <ion-card>
+    <ion-card-title>
+      <H1>Price of purchased product ranging from:</H1>
+    </ion-card-title>
+    <ion-item>
+      <ion-label>Price min : </ion-label>
+      <ion-input [(ngModel)]="priceminIn"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Price max : </ion-label>
+      <ion-input [(ngModel)]="pricemaxIn"></ion-input>
+    </ion-item>
+    <ion-button expand='full' color="secondary" (click)="getPrice()">Search</ion-button>
+  </ion-card>
+  <div *ngIf="data2$ | async as d">
+    <ion-card *ngFor='let n of d.data'>
+      <ion-card-content>
+        <p><b>User ID:</b> {{n.user_id}}</p>
+        <p><b>Price:</b> {{n.price}}</p>
+        <p><b>Event time:</b> {{n.event_time}} </p>
+        <p><b>Event type:</b> {{n.event_type}}</p>
+        <p><b>Product ID:</b> {{n.product_id}}</p>
+      </ion-card-content>      
+    </ion-card>
+  </div>
+</div>
+</ion-content>

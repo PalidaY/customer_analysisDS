@@ -1,0 +1,86 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Overview
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color ="light" [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Overview</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div>
+     <p  style="font-size:120%;text-align:center"><ion-icon  name="stats-chart-outline"></ion-icon>Data Visualizatiion</p>
+  </div>
+  <ion-card>
+    <ion-card-header>
+      <b>Revenue per day Line Chart</b> {{showData1}}
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #lineCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <b>Revenue per weekday Chart</b>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+    <b>View Cart Purchase</b>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <canvas #doughnutCanvas style="position: relative; height:20vh; width:40vw"></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  
+  <div *ngIf="data3$ | async as k">
+    <ion-card *ngFor='let m of k.data'>
+      <ion-card-content>
+        <ion-card-header>
+          <b>The product with the highest purchase over view:</b>
+        </ion-card-header>
+        <p><b>Product ID:</b> {{m.product_id}}</p>
+        <p><b>cart:</b> {{m.cart}}</p>
+        <p><b>purchase:</b> {{m.purchase}} </p>
+        <p><b>view:</b> {{m.view}}</p>
+        <p><b>cart/view:</b> {{m.cart_over_view}}</p>
+        <p><b>purchase/cart:</b> {{m.purchase_over_cart}}</p>
+        <p><b>purchase/view:</b> {{m.purchase_over_view}}</p>
+      </ion-card-content>      
+    </ion-card>
+  </div>
+ 
+  
+  <ion-card>
+    <ion-card-header>
+      <b>Top 10 Purchased Product by UNIQUE User</b>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas2 style="position: relative; height:20vh; width:40vw"></canvas>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <b>Top 10 Users who Purchased the Most Number of Items</b>
+    </ion-card-header>
+    <ion-card-content>
+      <canvas #barCanvas3 style="position: relative; height:20vh; width:40vw"></canvas>
+    </ion-card-content>
+  </ion-card>
+
+
+ 
+
+</ion-content>
